@@ -1,4 +1,3 @@
-
 <html ng-app="worldCardApp">
   <head>
     <title>VR AuslandsNavigator</title>
@@ -26,27 +25,55 @@
     <div id="landDetails" class="modal">
       <div class="modal-content">
         <div class="row" id="details" ng-hide="showForm">
-          <div class="col s12">
-              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Export nach {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
-              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Import aus {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
-              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s8"><h5>Ihre Rahmenbedingungen bei Ihrer Expansion nach {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
-              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/kaufkraft.png" class="detail_icon valign center-align"/></div></div> <div class="col s11"><b>Kaufkraft:</b> <br />{{mapper('exportKaufkraft',country.export_kaufkraft)}}</div></div>
-              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Einfuhrbestimmungen:</b> <br />{{mapper('exportEinfuhrbestimmungen',country.export_einfuhrbestimmungen)}}</div></div>
-              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('exportLogistik',country.export_logistikanbindung)}}</div></div>
-              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Ausfuhrbestimmungen:</b> <br />{{mapper('importAusfuhrbestimmungen',country.import_ausfuhrbestimmung)}}</div></div>
-              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/preisniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Preisniveau:</b> <br />{{mapper('importPreisniveau',country.import_preisniveau)}}</div></div>
-              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('importLogistik',country.import_logistikanbindung)}}</div></div>
-              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/infrastruktur.png" class="detail_icon"/></div></div> <div class="col s11"><b>Infrastrukutur:</b></b> <br />{{mapper('productionInfrastruktur',country.produktionsstaette_infrastruktur)}} </div></div>
-              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/lohnniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Lohnniveau:</b> <br />{{mapper('productionLohnniveau',country.produktionsstaette_lohnniveau)}} </div></div>
-              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/umwelteinfluesse.png" class="detail_icon"/></div></div> <div class="col s11"><b>Umwelteinflüsse:</b> <br />{{mapper('productionUmwelteinfluesse',country.produktionsstaette_umwelteinfluesse)}}</div></div>
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s4"><a class="active" href="#export">{{l18n.export}}</a></li>
+                <li class="tab col s4"><a href="#import">{{l18n.import}}</a></li>
+                <li class="tab col s4"><a href="#production">{{l18n.production}}</a></li>
+              </ul>
+            </div>
+            <div id="export" class="col s12">
+              <div class="row"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Export nach {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/kaufkraft.png" class="detail_icon valign center-align"/></div></div> <div class="col s11"><b>Kaufkraft:</b> <br />{{mapper('exportKaufkraft',country.export_kaufkraft)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Einfuhrbestimmungen:</b> <br />{{mapper('exportEinfuhrbestimmungen',country.export_einfuhrbestimmungen)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('exportLogistik',country.export_logistikanbindung)}}</div></div>
+
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/pol_Lage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Politische Lage:</b> <br />{{mapper('politischeLage', country.politische_lage)}}</div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/wirtschlage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Wirtschaftliche Lage:</b> <br />{{mapper('wirtschaftlicheLage', country.wirtschaftliche_lage)}}</div></div>
+
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s12"><br /><b>So können wir Sie beim Export nach {{country.name}} unterstützen:</b></div></div>
+
+            </div>
+            <div id="import" class="col s12">
+              <div class="row"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Import aus {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Ausfuhrbestimmungen:</b> <br />{{mapper('importAusfuhrbestimmungen',country.import_ausfuhrbestimmung)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/preisniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Preisniveau:</b> <br />{{mapper('importPreisniveau',country.import_preisniveau)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('importLogistik',country.import_logistikanbindung)}}</div></div>
+
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/pol_Lage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Politische Lage:</b> <br />{{mapper('politischeLage', country.politische_lage)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/wirtschlage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Wirtschaftliche Lage:</b> <br />{{mapper('wirtschaftlicheLage', country.wirtschaftliche_lage)}}</div></div>
+
+            </div>
+            <div id="production" class="col s12">
+              <div class="row"><div class="col s8"><h5>Ihre Rahmenbedingungen bei Ihrer Expansion nach {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/infrastruktur.png" class="detail_icon"/></div></div> <div class="col s11"><b>Infrastrukutur:</b></b> <br />{{mapper('productionInfrastruktur',country.produktionsstaette_infrastruktur)}} </div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/lohnniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Lohnniveau:</b> <br />{{mapper('productionLohnniveau',country.produktionsstaette_lohnniveau)}} </div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/umwelteinfluesse.png" class="detail_icon"/></div></div> <div class="col s11"><b>Umwelteinflüsse:</b> <br />{{mapper('productionUmwelteinfluesse',country.produktionsstaette_umwelteinfluesse)}}</div></div>
+
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/pol_Lage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Politische Lage:</b> <br />{{mapper('politischeLage', country.politische_lage)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/wirtschlage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Wirtschaftliche Lage:</b> <br />{{mapper('wirtschaftlicheLage', country.wirtschaftliche_lage)}}</div></div>
+               
+            </div>
+
+
+          <div class="col s12">
+             <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/pol_Lage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Politische Lage:</b> <br />{{mapper('politischeLage', country.politische_lage)}}</div></div>
+             <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/wirtschlage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Wirtschaftliche Lage:</b> <br />{{mapper('wirtschaftlicheLage', country.wirtschaftliche_lage)}}</div></div>
               <!-- Produkte
               for future use
               <img src="images/TODO.png" class="detail_icon valign center-align"/>
               -->
-              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s12"><br /><b>So können wir Sie beim Export nach {{country.name}} unterstützen:</b></div></div>
-              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s12"><br /><b>So können wir Sie beim Import aus {{country.name}} unterstützen:</b></div></div>
+            <div class="row" ng-show="currentActivity == l18n.import"><div class="col s12"><br /><b>So können wir Sie beim Import aus {{country.name}} unterstützen:</b></div></div>
               <div class="row" ng-show="currentActivity == l18n.production"><div class="col s12"><br /><b>So können wir Sie bei Ihrer Expansion nach {{country.name}} unterstützen:</b></div></div>
               <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/export_finanzierung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir finanzieren Ihren Export.</div></div>
               <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/export_absicherung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir sichern Sie gegen Währungsschwankungen sowie gegen wirtschaftliche und politische Risiken ab.</div></div>
@@ -104,7 +131,17 @@
      </div>
 
     <img src="images/logo.png" class="logo"/>
-    <div class="row"><div style="margin-left:35px"><b>Was ist Ihr Vorhaben?</b></div></div>
+    <div class="row">
+      <div class="col s4">Was ist Ihr Vorhaben?</div>
+      <div class="col s8">
+        <input type="text"  ng-model="searchString" />
+        <div id="searchResult" ng-hide="searchString == ''">
+          <div class="entry" ng-repeat="(code,entry) in countrys">
+            <span ng-click="openWindow(code)" ng-show="entry.name.toLowerCase().indexOf(searchString.toLowerCase()) == 0">{{entry.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col s4">
              <ul class="collapsible popout" data-collapsible="accordion">

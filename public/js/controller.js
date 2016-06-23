@@ -140,4 +140,17 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
       }
     }
   };
+  $scope.myFilter = function (item) {
+    return item.name = 'deu' || item.name === 'blue';
+  };
+  $scope.openWindow = function(code){
+      $scope.currentCountry = code;
+      $scope.country=  $scope.countrys[code.toUpperCase()];
+      $scope.searchString = "";
+
+    $("#landDetails").openModal({complete: function() {
+      $scope.showForm= false;
+
+    }});
+  }
 });
