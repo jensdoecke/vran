@@ -57,6 +57,8 @@ var appEnv = cfenv.getAppEnv();
 
 app.listen(appEnv.port, '0.0.0.0', function () {
   console.log('server starting on ' + appEnv.url);
+    var welt = require('./public/js/maps/jquery.vmap.world2.js');
+  console.log(welt);
 });
 
 // router.get('/country/:id', function (req, res) {
