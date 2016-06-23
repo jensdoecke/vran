@@ -1,0 +1,53 @@
+.ampel{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  border-radius:7px;
+}
+.rot{
+  background-color:red;
+}
+.gelb{
+  background-color:yellow;
+}
+.gruen{
+  background-color:green;
+}
+
+.vr_icons{
+  float: left;
+margin-top: 1px;
+margin-right: 10px;
+height:40px;
+}
+
+.logo{
+  width:500px;
+  padding:10px;
+}
+
+.detail_icon{
+  width: 40px;
+  height: 40px;
+}
+
+.detail_logo{
+  margin-top: 5px;
+}
+
+.detail_fonticon{
+  font-size: 40px !important;
+}
+
+.modal-content {
+  padding-bottom: 0px !important ;
+}
+
+.modal {
+  width: 75% !important ;
+  max-height: 100% !important ;
+}
+
+h5{
+  font-size:16px;
+}

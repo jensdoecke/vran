@@ -1,0 +1,66 @@
+{
+  "politischeLage":{
+      "low": "Die politische Situation ist eher instabil. Demokratische Grundprinzipien sind gering ausgeprägt.",
+      "medium": "Die politische Situation ist eher ausgewogen. Demokratische Grundprinzipien sind wahrscheinlich dauerhaft gewährleistet.",
+      "high": "Die politische Situation ist stabil. Demokratische Grundprinzipien sind dauerhaft gewährleistet."
+    },
+    "wirtschaftlicheLage":{
+
+      "low": "Der Index aus Wachstum, Inflation und Verschuldung deutet auf eine instabile wirtschaftliche Lage hin.",
+      "medium": "Der Index aus Wachstum, Inflation und Verschuldung deutet auf eine eher stabilere wirtschaftliche Lage hin.",
+      "high": "Der Index aus Wachstum, Inflation und Verschuldung deutet auf eine stabile wirtschaftliche Lage hin."
+    },
+    "exportKaufkraft":{
+
+      "low": "Der berechnete Kaufkraftindex deutet auf eine eher geringe Kaufkraft hin.",
+      "medium": "Der berechnete Kaufkraftindex deutet auf eine eher mittlere Kaufkraft hin.",
+      "high": "Der berechnete Kaufkraftindex deutet auf eine eher hohe Kaufkraft hin."
+    },
+    "exportEinfuhrbestimmungen":{
+
+      "low": "Die Einfuhrbestimmungen sind wenig restriktiv. Viele Produkte können ohne Einfuhrbeschränkungen eingeführt werden.",
+      "medium": "Die Einfuhrbestimmungen enthalten Restriktionen. Für einige Produkte gelten Einfuhrbeschränkungen.",
+      "high": "Die Einfuhrbestimmungen sind sehr restriktiv. Für viele Produkte gelten Einfuhrbeschränkungen."
+    },
+    "exportLogistik":{
+
+      "low": "Schlechte logistische Gegebenheiten und somit schwieriger Transport.",
+      "medium": "Logistische Gegebenheiten eher mittel. Transport von Waren teilweise erschwert.",
+      "high": "Gute logistische Gegebenheiten und somit einfache Transportmöglichkeiten."
+    },
+    "importAusfuhrbestimmungen":{
+
+      "low": "Die Ausfuhrbestimmungen sind wenig restriktiv. Viele Produkte können ohne Beschränkungen ausgeführt werden.",
+      "medium": "Die Ausfuhrbestimmungen enthalten Restriktionen für bestimmte Produkte.",
+      "high": "Die Ausfuhrbestimmungen sind sehr restriktiv. Für viele Produkte gelten Beschränkungen."
+    },
+    "importPreisniveau":{
+
+      "low": "Das Preisniveau ist eher gehoben.",
+      "medium": "Das Preisniveau ist eher durchschnittlich.",
+      "high": "Das Preisniveau ist eher gering."
+    },
+    "importLogistik":{
+
+      "low": "Schlechte logistische Ausstattung und somit schwieriger Transport.",
+      "medium": "Logistische Ausstattung eher mittel. Transport von Waren teilweise erschwert.",
+      "high": "Gute logistische Ausstattung und somit einfache Transportmöglichkeiten."
+    },
+    "productionInfrastruktur":{
+
+      "low": "Die Infrastruktur ist kaum ausgeprägt. Eine flächendeckende Versorgung mit Energie, Telekommunikation und Transportmöglichkeiten kann nicht garantiert werden.",
+      "medium": "Die Infrastruktur ist teilweise ausgeprägt. Eine flächendeckende Versorgung mit Energie, Telekommunikation und Transportmöglichkeiten ist zum Großteil vorhanden.",
+      "high": "Die Infrastruktur ist stark ausgeprägt. Eine flächendeckende Versorgung mit Energie, Telekommunikation und Transportmöglichkeiten ist flächendeckend vorhanden."
+    },
+    "productionLohnniveau":{
+
+      "high": "Das Lohnniveau ist gering und Arbeitskräfte sind eher günstig.",
+      "medium": "Das Lohnniveau ist mittel und Arbeitskräfte somit eher günstig.",
+      "low": "Das Lohnniveau ist verhältnismäßig hoch und Arbeitskräfte teuer."
+    },
+    "productionUmwelteinfluesse":{
+      "high": "Umwelteinflüsse treten selten auf. Die Gefahr von Naturkatastrophen ist gering.",
+      "medium": "Umwelteinflüsse treten weniger häufig auf. Die Gefahr von Naturkatastrophen ist mittel.",
+      "low": "Umwelteinflüsse treten relativ häufig auf. Die Gefahr von Naturkatastrophen ist hoch."
+    }
+}

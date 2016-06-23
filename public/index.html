@@ -1,0 +1,161 @@
+
+<html ng-app="worldCardApp">
+  <head>
+    <title>VR AuslandsNavigator</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" href="css/jqvmap.css" media="screen" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/rzslider.css"/>
+    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/rzslider.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+
+    <script src="js/controller.js"></script>
+
+    <script type="text/javascript" src="js/jquery.vmap.js"></script>
+    <script type="text/javascript" src="js/maps/jquery.vmap.world.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/jquery.vmap.sampledata.js"></script>
+  </head>
+  <body ng-controller="worldCardCtrl">
+    <div id="landDetails" class="modal">
+      <div class="modal-content">
+        <div class="row" id="details" ng-hide="showForm">
+          <div class="col s12">
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Export nach {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Import aus {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s8"><h5>Ihre Rahmenbedingungen bei Ihrer Expansion nach {{country.name}}.</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/kaufkraft.png" class="detail_icon valign center-align"/></div></div> <div class="col s11"><b>Kaufkraft:</b> <br />{{mapper('exportKaufkraft',country.export_kaufkraft)}}</div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Einfuhrbestimmungen:</b> <br />{{mapper('exportEinfuhrbestimmungen',country.export_einfuhrbestimmungen)}}</div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('exportLogistik',country.export_logistikanbindung)}}</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Ausfuhrbestimmungen:</b> <br />{{mapper('importAusfuhrbestimmungen',country.import_ausfuhrbestimmung)}}</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/preisniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Preisniveau:</b> <br />{{mapper('importPreisniveau',country.import_preisniveau)}}</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('importLogistik',country.import_logistikanbindung)}}</div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/infrastruktur.png" class="detail_icon"/></div></div> <div class="col s11"><b>Infrastrukutur:</b></b> <br />{{mapper('productionInfrastruktur',country.produktionsstaette_infrastruktur)}} </div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/lohnniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Lohnniveau:</b> <br />{{mapper('productionLohnniveau',country.produktionsstaette_lohnniveau)}} </div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/umwelteinfluesse.png" class="detail_icon"/></div></div> <div class="col s11"><b>Umwelteinflüsse:</b> <br />{{mapper('productionUmwelteinfluesse',country.produktionsstaette_umwelteinfluesse)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/pol_Lage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Politische Lage:</b> <br />{{mapper('politischeLage', country.politische_lage)}}</div></div>
+              <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/wirtschlage.png" class="detail_icon"/></div></div> <div class="col s11"><b>Wirtschaftliche Lage:</b> <br />{{mapper('wirtschaftlicheLage', country.wirtschaftliche_lage)}}</div></div>
+              <!-- Produkte
+              for future use
+              <img src="images/TODO.png" class="detail_icon valign center-align"/>
+              -->
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s12"><br /><b>So können wir Sie beim Export nach {{country.name}} unterstützen:</b></div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s12"><br /><b>So können wir Sie beim Import aus {{country.name}} unterstützen:</b></div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s12"><br /><b>So können wir Sie bei Ihrer Expansion nach {{country.name}} unterstützen:</b></div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/export_finanzierung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir finanzieren Ihren Export.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/export_absicherung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir sichern Sie gegen Währungsschwankungen sowie gegen wirtschaftliche und politische Risiken ab.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s1"><div class="valign-wrapper"><img src="images/export_germandesk.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir bieten Ihnen Orientierung mit unseren deutschsprachigen Experten vor Ort.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/import_absicherung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir sichern Sie gegen Währungsschwankungen ab.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/import_zahlungsverkehr.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir bieten Ihnen alle notwendigen Zahlungsverkehrslösungen.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s1"><div class="valign-wrapper"><img src="images/import_germandesk.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir bieten Ihnen Orientierung mit unseren deutschsprachigen Experten vor Ort.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/produzieren_germandesk.png" class="detail_icon valign center-align"/></div></div><div class="col s11">Wir bieten Ihnen Orientierung mit unseren deutschsprachigen Experten vor Ort.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/produzieren_finanzierung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir finanzieren Ihren Standort vor Ort.</div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s1"><div class="valign-wrapper"><img src="images/produzieren_absicherung.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir sichern Sie gegen Währungsschwankungen sowie gegen wirtschaftliche und politische Risiken ab.</div></div>
+            </div>
+          </div>
+          <form class="col s12" ng-show="showForm">
+            <div class="row" style="margin-bottom:10px;">
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s12">Um Sie optimal beim Export nach  {{country.name}} unterstützen zu können, benötigen wir folgende Informationen:</div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s12">Um Sie optimal beim Import aus {{country.name}} unterstützen zu können, benötigen wir folgende Informationen:</div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s12">Um Sie optimal bei Ihrer Expansion nach {{country.name}} unterstützen zu können, benötigen wir folgende Informationen:</div></div>
+            </div>
+             <div class="row" style="margin-bottom:10px;">
+               <div class="input-field col s6">
+                 <input ng-model="customer.company" placeholder="Bitte Firmennamen eingeben..." id="firma" type="text" class="validate">
+                 <label for="firma">Firma</label>
+               </div>
+               <div class="input-field col s6">
+                 <input ng-model="customer.name" id="name" type="text" class="validate">
+                 <label for="name">Name</label>
+               </div>
+             </div>
+             <div class="row" style="margin-bottom:10px;">
+               <div class="input-field col s6">
+                 <input  ng-model="customer.email" id="email" type="email" class="validate">
+                 <label for="email">E-Mail</label>
+               </div>
+               <div class="input-field col s6">
+                 <input  ng-model="customer.telefon" id="telefon" type="text" class="validate">
+                 <label for="telefon">Telefon</label>
+               </div>
+             </div>
+             <div class="row" style="margin-bottom:10px;">
+               <div class="input-field col s12">
+                <textarea  ng-model="customer.message" id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Bitte beschreiben Sie kurz Ihr Vorhaben.</label>
+              </div>
+             </div>
+           </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-light btn blue darken-4" style="margin-left:25px;float:left">{{l18n.button_form_close}}</a>
+        <a href="#!" ng-click="showForm = !showForm" class="waves-effect waves-light btn orange darken-3" ng-hide="showForm" style="margin-right:25px">{{l18n.button_form_contact}}</a>
+        <a href="#!" ng-click="showForm = !showForm"  style="margin-right:25px" onclick="Materialize.toast('Danke für Ihre Anfrage,<br />Ihre Daten wurder erfolgreich übertragen!', 4000)" class="waves-effect waves-light btn orange darken-3 modal-action modal-close" ng-show="showForm">{{l18n.button_form_submit}}</a>
+      </div>
+     </div>
+
+    <img src="images/logo.png" class="logo"/>
+    <div class="row"><div style="margin-left:35px"><b>Was ist Ihr Vorhaben?</b></div></div>
+    <div class="row">
+      <div class="col s4">
+             <ul class="collapsible popout" data-collapsible="accordion">
+               <li>
+                 <div class="collapsible-header" ng-click="refreshSliderRendering(l18n.export)"><img src="images/icon_export.png" class="vr_icons"/>Exportieren</div>
+                 <div class="collapsible-body">
+                   <div style="padding:0px 20px">
+                     Wie wichtig sind Ihnen folgende Faktoren?<br />
+                     <h5>Hohe Kaufkraft:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="exportKaufKraft.value" rz-slider-options="exportKaufKraft.options"></rzslider>
+                     <h5>Lockere Einfuhrbestimmungen:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="exportEinfuhrbestimmungen.value" rz-slider-options="exportEinfuhrbestimmungen.options"></rzslider>
+                     <h5>Gute Logistikanbindung:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="exportLogistik.value" rz-slider-options="exportLogistik.options"></rzslider>
+                   </div>
+                 </div>
+               </li>
+               <li>
+                 <div class="collapsible-header" ng-click="refreshSliderRendering(l18n.import)"><img src="images/icon_import.png" class="vr_icons"/>Importieren</div>
+                 <div class="collapsible-body">
+                   <div style="padding:0px 20px">
+                     Wie wichtig sind Ihnen folgende Faktoren?<br />
+                     <h5>Lockere Ausfuhrbestimmungen:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="importAusfuhrbestimmungen.value" rz-slider-options="importAusfuhrbestimmungen.options"></rzslider>
+                     <h5>Niedriges Preisniveau:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="importPreisniveau.value" rz-slider-options="importPreisniveau.options"></rzslider>
+                     <h5>Gute Logistikanbindung:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="importLogistik.value" rz-slider-options="importLogistik.options"></rzslider>
+                   </div>
+                </div>
+               </li>
+               <li>
+                 <div class="collapsible-header" ng-click="refreshSliderRendering(l18n.production)"><img src="images/icon_prod.png" class="vr_icons"/>Produzieren</div>
+                 <div class="collapsible-body">
+                   <div style="padding:0px 20px">
+                     Wie wichtig sind Ihnen folgende Faktoren?<br />
+                     <h5>Ausgeprägte Infrastruktur:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="productionInfrastruktur.value"  rz-slider-options="productionInfrastruktur.options"></rzslider>
+                     <h5>Niedriges Lohnniveau:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="productionLohnniveau.value"  rz-slider-options="productionLohnniveau.options"></rzslider>
+                     <h5>Geringe Umwelteinflüsse:</h5>
+                     <div style="float:left;">{{l18n.lessImportant}}</div><div style="float:right;">{{l18n.moreImportant}}</div><rzslider rz-slider-model="productionUmwelteinfluesse.value"  rz-slider-options="productionUmwelteinfluesse.options"></rzslider>
+                 </div>
+               </div>
+               </li>
+             </ul>
+           </div>
+           <div class="col s8">
+             <div id="vmap" style="width:1100px; height:700px;margin-top:5px"></div>
+           </div>
+         </div>
+     </div>
+   </body>
+ </html>

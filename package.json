@@ -1,0 +1,26 @@
+{
+  "name": "vrauslandservice",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cfenv": "1.0.x",
+    "cloudant": "^1.4.1",
+    "express": "4.13.x",
+    "jsonfile": "^2.2.3"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.2.x"
+  },
+  "description": "This README.md file is displayed on your project page. You should edit this  file to describe your project, including instructions for building and  running the project, pointers to the license under which you are making the  project available, and anything else you think would be useful for others to know.",
+  "main": "app.js",
+  "keywords": [
+    "auslandservice",
+    "vr"
+  ],
+  "author": "",
+  "license": "ISC"
+}
