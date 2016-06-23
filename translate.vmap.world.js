@@ -1,18 +1,27 @@
-var daten = require('./misc/daten');
-var de = require('./misc/dummy');
-var filename = './misc/daten.json';
-var jsonfile = require('jsonfile')
+// var daten = require('./misc/daten');
+// var de = require('./misc/dummy');
+// var filename = './misc/daten.json';
 
-// map english names to german names
-for(country in daten){
-  if(de[country.toUpperCase()]){
-    console.log(country);
+var world = require('./misc/jquery.vmap.world.old.js');
+// var jsonfile = require('jsonfile')
 
-    daten[country].name = de[country.toUpperCase()].name;
-  }
+console.log(world);
+for(c in world)
+{
+
+  console.log(c.id);
 }
 
-jsonfile.writeFile(filename, daten, function (err) {
-  if(err) return console.error(err);
-
-})
+// map english names to german names
+// for(country in daten){
+//   if(de[country.toUpperCase()]){
+//     console.log(country);
+//
+//     daten[country].name = de[country.toUpperCase()].name;
+//   }
+// }
+//
+// jsonfile.writeFile(filename, daten, function (err) {
+//   if(err) return console.error(err);
+//
+// })

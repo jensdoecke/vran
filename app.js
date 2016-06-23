@@ -17,6 +17,10 @@ var app = express();
 
 var router = express.Router();
 
+var request = require('request');
+
+var worldbank = require('./worldbank');
+
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
@@ -57,8 +61,7 @@ var appEnv = cfenv.getAppEnv();
 
 app.listen(appEnv.port, '0.0.0.0', function () {
   console.log('server starting on ' + appEnv.url);
-    var welt = require('./public/js/maps/jquery.vmap.world2.js');
-  console.log(welt);
+  worldbank.fetchAll();
 });
 
 // router.get('/country/:id', function (req, res) {
@@ -75,6 +78,20 @@ app.listen(appEnv.port, '0.0.0.0', function () {
 router.get('/countries', function (req, res) {
   var daten = require('./misc/daten.json');
   res.send(daten);
+});
+
+function enrich(body)
+{
+  var worldData = JSON.parse(body)[1];
+  for(i in worldData)
+  {
+    console.log(worldData[i].country);
+  }
+  return worldData;
+}
+
+router.get('/world', function(req, res) {
+
 });
 
 router.get('/laenderinfos', function (req, res) {
