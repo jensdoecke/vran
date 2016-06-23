@@ -6,10 +6,12 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "alasql": "^0.2.7",
     "cfenv": "1.0.x",
     "cloudant": "^1.4.1",
     "express": "4.13.x",
-    "jsonfile": "^2.2.3"
+    "jsonfile": "^2.2.3",
+    "request": "^2.72.0"
   },
   "repository": {},
   "engines": {

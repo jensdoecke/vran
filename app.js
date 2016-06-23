@@ -17,7 +17,6 @@ var app = express();
 
 var router = express.Router();
 
-var request = require('request');
 
 var worldbank = require('./worldbank');
 
@@ -91,7 +90,7 @@ function enrich(body)
 }
 
 router.get('/world', function(req, res) {
-
+  res.send(worldbank.selectAll());
 });
 
 router.get('/laenderinfos', function (req, res) {
