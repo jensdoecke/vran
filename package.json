@@ -11,6 +11,7 @@
     "cloudant": "^1.4.1",
     "express": "4.13.x",
     "jsonfile": "^2.2.3",
+    "mysql": "^2.11.1",
     "request": "^2.72.0"
   },
   "repository": {},
