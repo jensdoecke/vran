@@ -51,7 +51,15 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
       showTooltip: true,
       normalizeFunction: 'polynomial',
       onRegionClick: function (element, code, region) {
-        $("#landDetails").openModal({complete: function() {
+        $("#landDetails").openModal({
+          ready: function() {
+            var val = $scope.currentActivity;
+            if (val == null || val == undefined || val == ""){
+              val = $scope.l18n.export;
+            }
+            $('ul.tabs').tabs('select_tab',val);
+          },
+          complete: function() {
           $scope.showForm= false;
           $('#vmap').vectorMap('deselect',region);
           $scope.colorMap();
@@ -130,7 +138,9 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
       var entry = $scope.mapping[context];
       if(entry)
       {
-        if(value <= 30){
+        if (value == 0 || value == null || value == undefined || value ==""){
+          return entry.zero;
+        }else if(value <= 30){
           return entry.low;
         } else if(value <= 70){
           return entry.medium;
@@ -148,9 +158,14 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
       $scope.country=  $scope.countrys[code.toUpperCase()];
       $scope.searchString = "";
 
-    $("#landDetails").openModal({complete: function() {
+    $("#landDetails").openModal({ready: function() {
+      var val = $scope.currentActivity;
+      if (val == null || val == undefined || val == ""){
+        val = $scope.l18n.export;
+      }
+      $('ul.tabs').tabs('select_tab', val);
+    },complete: function() {
       $scope.showForm= false;
-
     }});
   }
 });

@@ -1,66 +1,79 @@
 {
   "politischeLage":{
+
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
       "low": "Die politische Situation ist eher instabil. Demokratische Grundprinzipien sind gering ausgeprägt.",
-      "medium": "Die politische Situation ist eher ausgewogen. Demokratische Grundprinzipien sind wahrscheinlich dauerhaft gewährleistet.",
+      "medium": "Die politische Situation ist eher ausgewogen. Demokratische Grundprinzipien sind voraussichtlich dauerhaft gewährleistet.",
       "high": "Die politische Situation ist stabil. Demokratische Grundprinzipien sind dauerhaft gewährleistet."
     },
     "wirtschaftlicheLage":{
 
-      "low": "Der Index aus Wachstum, Inflation und Verschuldung deutet auf eine instabile wirtschaftliche Lage hin.",
-      "medium": "Der Index aus Wachstum, Inflation und Verschuldung deutet auf eine eher stabilere wirtschaftliche Lage hin.",
-      "high": "Der Index aus Wachstum, Inflation und Verschuldung deutet auf eine stabile wirtschaftliche Lage hin."
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
+      "low": "Der Index aus Wachstum, Arbeitslosenquote und Verschuldung deutet auf eine instabile wirtschaftliche Lage hin.",
+      "medium": "Der Index aus Wachstum, Arbeitslosenquote und Verschuldung deutet auf eine eher stabilere wirtschaftliche Lage hin.",
+      "high": "Der Index aus Wachstum, Arbeitslosenquote und Verschuldung deutet auf eine stabile wirtschaftliche Lage hin."
     },
     "exportKaufkraft":{
 
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
       "low": "Der berechnete Kaufkraftindex deutet auf eine eher geringe Kaufkraft hin.",
       "medium": "Der berechnete Kaufkraftindex deutet auf eine eher mittlere Kaufkraft hin.",
       "high": "Der berechnete Kaufkraftindex deutet auf eine eher hohe Kaufkraft hin."
     },
     "exportEinfuhrbestimmungen":{
 
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
       "low": "Die Einfuhrbestimmungen sind wenig restriktiv. Viele Produkte können ohne Einfuhrbeschränkungen eingeführt werden.",
       "medium": "Die Einfuhrbestimmungen enthalten Restriktionen. Für einige Produkte gelten Einfuhrbeschränkungen.",
       "high": "Die Einfuhrbestimmungen sind sehr restriktiv. Für viele Produkte gelten Einfuhrbeschränkungen."
     },
     "exportLogistik":{
 
-      "low": "Schlechte logistische Gegebenheiten und somit schwieriger Transport.",
-      "medium": "Logistische Gegebenheiten eher mittel. Transport von Waren teilweise erschwert.",
-      "high": "Gute logistische Gegebenheiten und somit einfache Transportmöglichkeiten."
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
+      "low": "Eine gute logistische Anbindung ist nicht gegeben.",
+      "medium": "Die logistischen Gegebenheiten deuten auf teilweise erschwerte Transportbedingungen hin.",
+      "high": "Gute logistische Gegebenheiten und somit einfache Transportbedingungen vorhanden."
     },
     "importAusfuhrbestimmungen":{
 
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
       "low": "Die Ausfuhrbestimmungen sind wenig restriktiv. Viele Produkte können ohne Beschränkungen ausgeführt werden.",
       "medium": "Die Ausfuhrbestimmungen enthalten Restriktionen für bestimmte Produkte.",
       "high": "Die Ausfuhrbestimmungen sind sehr restriktiv. Für viele Produkte gelten Beschränkungen."
     },
     "importPreisniveau":{
 
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
       "low": "Das Preisniveau ist eher gehoben.",
       "medium": "Das Preisniveau ist eher durchschnittlich.",
       "high": "Das Preisniveau ist eher gering."
     },
     "importLogistik":{
 
-      "low": "Schlechte logistische Ausstattung und somit schwieriger Transport.",
-      "medium": "Logistische Ausstattung eher mittel. Transport von Waren teilweise erschwert.",
-      "high": "Gute logistische Ausstattung und somit einfache Transportmöglichkeiten."
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
+      "low": "Eine gute logistische Anbindung ist nicht gegeben.",
+      "medium": "Die logistischen Gegebenheiten deuten auf teilweise erschwerte Transportbedingungen hin.",
+      "high": "Gute logistische Gegebenheiten und somit einfache Transportbedingungen vorhanden."
     },
     "productionInfrastruktur":{
 
-      "low": "Die Infrastruktur ist kaum ausgeprägt. Eine flächendeckende Versorgung mit Energie, Telekommunikation und Transportmöglichkeiten kann nicht garantiert werden.",
-      "medium": "Die Infrastruktur ist teilweise ausgeprägt. Eine flächendeckende Versorgung mit Energie, Telekommunikation und Transportmöglichkeiten ist zum Großteil vorhanden.",
-      "high": "Die Infrastruktur ist stark ausgeprägt. Eine flächendeckende Versorgung mit Energie, Telekommunikation und Transportmöglichkeiten ist flächendeckend vorhanden."
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
+      "low": "Es ist keine unternehmerfreundliche Infrastruktur vorhanden.",
+      "medium": "Die Infrstruktur ist nahezu unternehmerfreundlich.",
+      "high": "Die Infrstruktur ist unternehmerfreundlich."
     },
     "productionLohnniveau":{
 
-      "high": "Das Lohnniveau ist gering und Arbeitskräfte sind eher günstig.",
-      "medium": "Das Lohnniveau ist mittel und Arbeitskräfte somit eher günstig.",
-      "low": "Das Lohnniveau ist verhältnismäßig hoch und Arbeitskräfte teuer."
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
+      "high": "Das Lohnniveau ist gering und Arbeitskräfte sind gut verfügbar.",
+      "medium": "Es liegt ein mittleres Lohnniveau vor und Arbeitskräfte sind relativ gut verfügbar.",
+      "low": "Das Lohnniveau ist verhältnismäßig hoch und Arbeitskräfte sind schwer verfügbar."
     },
-    "productionUmwelteinfluesse":{
-      "high": "Umwelteinflüsse treten selten auf. Die Gefahr von Naturkatastrophen ist gering.",
-      "medium": "Umwelteinflüsse treten weniger häufig auf. Die Gefahr von Naturkatastrophen ist mittel.",
-      "low": "Umwelteinflüsse treten relativ häufig auf. Die Gefahr von Naturkatastrophen ist hoch."
+    "productionSicherheit":{
+
+      "zero": "Gern besprechen wir Details mit Ihnen in einem persönlichen Gespräch, da zu diesem Land keine eindeutigen Indikatoren verfügbar sind.",
+      "high": "Hohe Sicherheit vor Ort.",
+      "medium": "Die Sicherheit vor Ort ist zum Großteil gewährleistet.",
+      "low": "Flächendeckende Sicherheit kann nicht garantiert werden."
     }
 }
