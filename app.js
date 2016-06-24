@@ -75,12 +75,11 @@ app.listen(appEnv.port, '0.0.0.0', function () {
 // });
 
 router.get('/countries', function (req, res) {
-  var daten = require('./misc/daten.json');
-  res.send(daten);
+  worldbank.selectAll(res);
 });
 
 router.get('/worldbank', function(req, res) {
-  res.send(worldbank.selectAll());
+  worldbank.selectAll(res);
 });
 
 router.get('/laenderinfos', function (req, res) {
