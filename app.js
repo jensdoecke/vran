@@ -100,16 +100,18 @@ router.get('/laenderinfos', function (req, res) {
 
 
 router.get('/waehrungen', function(req,res) {
-  var daten = require('./misc/Waehrungen.txt');
+  var daten = require('./misc/Waehrungen.json');
   res.send(daten);
 });
 
 router.get('/exchangerates', function(req,res) {
   var daten = require('./misc/exchangerates.json');
+  var laender = require('./misc/Waehrungen.json');
   var d = new Date();
   var n = d.getTime();
-  console.log(daten.timestamp)
-  if (daten == null || daten.timestamp - Math.round(n/1000) > 86400) {
+  //console.log(daten.timestamp);
+  //console.log(Math.round(n/1000));
+  if (daten == null || Math.round(n/1000) - daten.timestamp > 86400) {
     $https.get('https://openexchangerates.org/api/latest.json?app_id=cc8e8a1f1a014c9faacfbc107e37bbcf').success(function(data) {
       $scope.daten = data;
       var fs  = require('fs');
@@ -120,7 +122,19 @@ router.get('/exchangerates', function(req,res) {
       })
     });
   }
-  res.send(daten);
+  var mapDaten = daten;
+  mapDaten.base = 'EUR';
+  var base = 1.0/mapDaten.rates['EUR'];
+  for (key in mapDaten.rates) {
+    mapDaten.rates[key] = mapDaten.rates[key]*base;
+  }
+  mapDaten.rates['USD'] = base;
+  var laenderWechselkurs = {};
+  for (key in laender) {
+    laenderWechselkurs[key] = { 'exchangeRate' : Math.round(mapDaten.rates[laender[key]]*100)/100 ,'currency' : laender[key] }; 
+    //console.log('Land ' + key + ' ' + laenderWechselkurs[key] );
+  }
+  res.send(laenderWechselkurs);
 });
 
 
