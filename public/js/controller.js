@@ -19,7 +19,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
     'button_form_close':'Schließen',
     'export':'exportieren',
     'import':'importieren',
-    'production':'Standorterschließung',
+    'production':'Standorterschliessung',
     'titel':'VR AuslandService',
     'lessImportant':'weniger wichtig',
     'moreImportant':'sehr wichtig'
