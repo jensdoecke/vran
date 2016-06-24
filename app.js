@@ -60,7 +60,7 @@ var appEnv = cfenv.getAppEnv();
 
 app.listen(appEnv.port, '0.0.0.0', function () {
   console.log('server starting on ' + appEnv.url);
-  worldbank.fetchAll();
+  // worldbank.fetchAll();
 });
 
 // router.get('/country/:id', function (req, res) {
@@ -75,7 +75,8 @@ app.listen(appEnv.port, '0.0.0.0', function () {
 // });
 
 router.get('/countries', function (req, res) {
-  worldbank.selectAll(res);
+  var daten = require('./misc/worldbank.json');
+  res.send(daten);
 });
 
 router.get('/worldbank', function(req, res) {
@@ -120,7 +121,7 @@ router.get('/exchangerates', function(req,res) {
   mapDaten.rates['USD'] = base;
   var laenderWechselkurs = {};
   for (key in laender) {
-    laenderWechselkurs[key] = { 'exchangeRate' : Math.round(mapDaten.rates[laender[key]]*100)/100 ,'currency' : laender[key] }; 
+    laenderWechselkurs[key] = { 'exchangeRate' : Math.round(mapDaten.rates[laender[key]]*100)/100 ,'currency' : laender[key] };
     //console.log('Land ' + key + ' ' + laenderWechselkurs[key] );
   }
   res.send(laenderWechselkurs);

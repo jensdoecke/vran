@@ -11,13 +11,14 @@ var connection = mysql.createConnection(
 
 cache = {};
 
-connection.connect();
+
 
 
   var request = require('request');
 
 module.exports = {
   fetchAll: function(){
+    connection.connect();
     // connection.query("CREATE TABLE worldbank(country STRING, indicator STRING, rawValue DECIMAL(20,15))");
     connection.query("TRUNCATE worldbank");
     // connection.query("CREATE TABLE worldbank_score(country STRING, indicator STRING, rawValue DECIMAL(20,15), score DECIMAL(20,15))");
