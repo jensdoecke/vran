@@ -34,7 +34,7 @@
             </div>
             <div class="col s3"><img src="images/logo.png" class="detail_logo responsive-img"></div>
             <div id="{{l18n.export}}" class="col s12">
-              <div class="row"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Export nach {{country.name}}.</h5></div><div class="col s4"></div></div>
+              <div class="row"><div class="col s1"><img src="/images/flags/48/{{currentCountry}}.png" /></div><div class="col s8"><h5>Ihre Rahmenbedingungen beim Export nach {{country.name}}.</h5></div><div class="col s3"></div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/kaufkraft.png" class="detail_icon valign center-align"/></div></div> <div class="col s11"><b>Kaufkraft:</b> <br />{{mapper('exportKaufkraft',country.export_kaufkraft)}}</div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Einfuhrbestimmungen:</b> <br />{{mapper('exportEinfuhrbestimmungen',country.export_einfuhrbestimmungen)}}</div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/logistikanbindung.png" class="detail_icon"/></div></div> <div class="col s11"><b>Logistikanbindung:</b> <br />{{mapper('exportLogistik',country.export_logistikanbindung)}}</div></div>
@@ -124,9 +124,9 @@
 
     <img src="images/logo.png" class="logo"/>
     <div class="row">
-      <div class="col s4"><b>Was ist Ihr Vorhaben?</b><br />Stellen Sie Ihre Anforderungen ein und wählen Sie anschließend Ihr bevorzugte Land aus</div>
+      <div class="col s4"><b>Welche Länder passen zu Ihrem Unternehmen? Finden Sie es heraus!</b><br />Konfigurieren Sie Ihr individuelles Vorhaben und wählen anschließend das präferierte Land.</div>
       <div class="col s3">
-      <label for="search_field">Ein Land direkt suchen:</label><input type="text" id="search_field" ng-model="searchString" />
+    <input placeholder="Direkte Ländersuche..." type="text" id="search_field" ng-model="searchString" />
         <div id="searchResult" ng-hide="searchString == ''">
           <div class="entry" ng-repeat="(code,entry) in countrys">
             <span ng-click="openWindow(code)" ng-show="entry.name.toLowerCase().indexOf(searchString.toLowerCase()) == 0">{{entry.name}}</span>
@@ -166,7 +166,7 @@
                 </div>
                </li>
                <li>
-                 <div class="collapsible-header" ng-click="refreshSliderRendering(l18n.production)"><img src="images/icon_prod.png" class="vr_icons"/>Produzieren</div>
+                 <div class="collapsible-header" ng-click="refreshSliderRendering(l18n.production)"><img src="images/icon_prod.png" class="vr_icons"/>{{l18n.production}}</div>
                  <div class="collapsible-body">
                    <div style="padding:0px 20px">
                      Wie wichtig sind Ihnen folgende Faktoren?<br />
