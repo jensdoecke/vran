@@ -79,17 +79,7 @@ router.get('/countries', function (req, res) {
   res.send(daten);
 });
 
-function enrich(body)
-{
-  var worldData = JSON.parse(body)[1];
-  for(i in worldData)
-  {
-    console.log(worldData[i].country);
-  }
-  return worldData;
-}
-
-router.get('/world', function(req, res) {
+router.get('/worldbank', function(req, res) {
   res.send(worldbank.selectAll());
 });
 
