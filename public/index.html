@@ -27,13 +27,13 @@
         <div class="row" id="details" ng-hide="showForm">
             <div class="col s9">
               <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#export">{{l18n.export}}</a></li>
-                <li class="tab col s4"><a href="#import">{{l18n.import}}</a></li>
-                <li class="tab col s4"><a href="#production">{{l18n.production}}</a></li>
+                <li class="tab col s4"><a class="active" href="#{{l18n.export}}">{{l18n.export}}</a></li>
+                <li class="tab col s4"><a href="#{{l18n.import}}">{{l18n.import}}</a></li>
+                <li class="tab col s4"><a href="#{{l18n.production}}">{{l18n.production}}</a></li>
               </ul>
             </div>
             <div class="col s3"><img src="images/logo.png" class="detail_logo responsive-img"></div>
-            <div id="export" class="col s12">
+            <div id="{{l18n.export}}" class="col s12">
               <div class="row"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Export nach {{country.name}}.</h5></div><div class="col s4"></div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/kaufkraft.png" class="detail_icon valign center-align"/></div></div> <div class="col s11"><b>Kaufkraft:</b> <br />{{mapper('exportKaufkraft',country.export_kaufkraft)}}</div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Einfuhrbestimmungen:</b> <br />{{mapper('exportEinfuhrbestimmungen',country.export_einfuhrbestimmungen)}}</div></div>
@@ -48,7 +48,7 @@
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/export_germandesk.png" class="detail_icon valign center-align"/></div></div> <div class="col s11">Wir bieten Ihnen Orientierung mit unseren deutschsprachigen Experten vor Ort.</div></div>
 
             </div>
-            <div id="import" class="col s12">
+            <div id="{{l18n.import}}" class="col s12">
               <div class="row"><div class="col s8"><h5>Ihre Rahmenbedingungen beim Import aus {{country.name}}.</h5></div><div class="col s4"></div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/ein_ausfuhr.png" class="detail_icon"/></div></div> <div class="col s11"><b>Ausfuhrbestimmungen:</b> <br />{{mapper('importAusfuhrbestimmungen',country.import_ausfuhrbestimmung)}}</div></div>
               <div class="row"><div class="col s1"><div class="valign-wrapper"><img src="images/preisniveau.png" class="detail_icon"/></div></div> <div class="col s11"><b>Preisniveau:</b> <br />{{mapper('importPreisniveau',country.import_preisniveau)}}</div></div>
@@ -82,11 +82,9 @@
           </div>
           <form class="col s12" ng-show="showForm">
             <div class="row" style="margin-bottom:10px;">
-              <div class="row" ng-show="currentActivity == l18n.export"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
+              <div class="row"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
               <div class="row" ng-show="currentActivity == l18n.export"><div class="col s12">Um Sie optimal beim Export nach  {{country.name}} unterstützen zu können, benötigen wir folgende Informationen:</div></div>
-              <div class="row" ng-show="currentActivity == l18n.import"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
               <div class="row" ng-show="currentActivity == l18n.import"><div class="col s12">Um Sie optimal beim Import aus {{country.name}} unterstützen zu können, benötigen wir folgende Informationen:</div></div>
-              <div class="row" ng-show="currentActivity == l18n.production"><div class="col s8"><h5>Beraterkontakt</h5></div><div class="col s4"><img src="images/logo.png" class="detail_logo responsive-img"></div></div>
               <div class="row" ng-show="currentActivity == l18n.production"><div class="col s12">Um Sie optimal bei Ihrer Expansion nach {{country.name}} unterstützen zu können, benötigen wir folgende Informationen:</div></div>
             </div>
              <div class="row" style="margin-bottom:10px;">
@@ -126,7 +124,7 @@
 
     <img src="images/logo.png" class="logo"/>
     <div class="row">
-      <div class="col s4">Was ist Ihr Vorhaben?</div>
+      <div class="col s4"><b>Was ist Ihr Vorhaben?</b><br />Stellen Sie Ihre Anforderungen ein und wählen Sie anschließend Ihr bevorzugte Land aus</div>
       <div class="col s8">
         <input type="text"  ng-model="searchString" />
         <div id="searchResult" ng-hide="searchString == ''">

@@ -118,6 +118,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
       $scope.currentActivity= undefined;
     } else {
       $scope.currentActivity = val;
+      $('ul.tabs').tabs('select_tab', val);
     }
     $timeout(function () {
      $scope.$broadcast('rzSliderForceRender');
@@ -130,7 +131,9 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
       var entry = $scope.mapping[context];
       if(entry)
       {
-        if(value <= 30){
+        if (value == 0 || value == null || value == undefined || value ==""){
+          return entry.zero;
+        }else if(value <= 30){
           return entry.low;
         } else if(value <= 70){
           return entry.medium;
@@ -150,7 +153,6 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
 
     $("#landDetails").openModal({complete: function() {
       $scope.showForm= false;
-
     }});
   }
 });
