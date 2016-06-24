@@ -68,9 +68,9 @@ textarea:focus {
 }
 
 .tabs .tab a {
-    color: #0d47a1;
+    color: orange;
 }
 
 .tabs .indicator {
-    background-color: #0d47a1;
+    background-color: orange;
 }
