@@ -47,3 +47,30 @@ height:40px;
   width: 75% !important ;
   max-height: 100% !important ;
 }
+
+#searchResult{
+  position:absolute;
+  border:1px solid grey;
+  z-index:10000;
+  background-color:#fff;
+}
+#searchResult .entry span{
+  padding:5px;
+}
+
+
+/* OVERRIDE MATERIALIZE CSS*/
+textarea:focus {
+  border-bottom: 1px solid #0d47a1;
+  -webkit-box-shadow: 0 1px 0 0 #0d47a1;
+  -moz-box-shadow: 0 1px 0 0 #0d47a1;
+  box-shadow: 0 1px 0 0 #0d47a1;
+}
+
+.tabs .tab a {
+    color: #0d47a1;
+}
+
+.tabs .indicator {
+    background-color: #0d47a1;
+}
