@@ -93,23 +93,24 @@ router.get('/waehrungen', function(req,res) {
   var daten = require('./misc/Waehrungen.json');
   res.send(daten);
 });
-
+//
 router.get('/exchangerates', function(req,res) {
   var daten = require('./misc/exchangerates.json');
   var laender = require('./misc/Waehrungen.json');
   var d = new Date();
   var n = d.getTime();
-  //console.log(daten.timestamp);
-  //console.log(Math.round(n/1000));
-  if (daten == null || Math.round(n/1000) - daten.timestamp > 86400) {
-    $https.get('https://openexchangerates.org/api/latest.json?app_id=cc8e8a1f1a014c9faacfbc107e37bbcf').success(function(data) {
-      $scope.daten = data;
-      var fs  = require('fs');
-      fs.unlinkSync('./misc/exchangerates.json');
-      fs.writeFile('./misc/exchangerates.json', data, (err) => {
-	if (err) throw err;
-	console.log('Fehler beim Speichern der Währungskurse!');
-      })
+  if ((daten == null) || (Math.round(n/1000) - daten.timestamp > 86400)) {
+    var request = require('request');
+    var url = 'https://openexchangerates.org/api/latest.json?app_id=cc8e8a1f1a014c9faacfbc107e37bbcf';
+    request(url,function(error,response,body) {
+      if(!error && response.statusCode == 200) {
+	  daten = JSON.parse(body);
+	  var fs  = require('fs');
+	  fs.writeFile('./misc/exchangerates.json', JSON.stringify(daten, null, 4), (err) => {
+	    if (err) throw err;
+	    console.log('Währungskurse neu geladen!');
+	  });
+      }
     });
   }
   var mapDaten = daten;
@@ -127,6 +128,16 @@ router.get('/exchangerates', function(req,res) {
   res.send(laenderWechselkurs);
 });
 
+/*
+router.get('/test', function(req,res) {
+  var daten = require('./misc/exchangerates.json');
+  var fs = require('fs');
+  fs.writeFile('test.json', JSON.stringify(daten, null, 4), (err) => {
+    if (err) throw err;
+    console.log('Datei erfolgreich geschrieben');
+  });
+  res.send(daten);
+})*/
 
 
 app.use('/api', router);
