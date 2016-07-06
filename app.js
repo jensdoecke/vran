@@ -19,6 +19,11 @@ router.get('/laenderinfos', function (req, res) {
   res.send(daten);
 });
 
+router.get('/oldcountries', function (req, res) {
+  var daten = require('./misc/daten.json');
+  res.send(daten);
+});
+
 router.get('/waehrungen', function(req,res) {
   var daten = require('./misc/Waehrungen.json');
   res.send(daten);

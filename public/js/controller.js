@@ -8,8 +8,12 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
   $http.get('/api/laenderinfos/').success(function(data) {
       $scope.mapping = data;
   });
+  $http.get('/api/oldcountries/').success(function(data) {
+      $scope.oldcountrys = data;
+  });
   $scope.customer={name:"",company:"",message:"",email:"",telefon:""};
   $scope.country= undefined;
+  $scope.oldcountry = undefined;
   $scope.showForm=false;
   $scope.currentCountry = undefined;
   $scope.currentActivity = undefined;
@@ -67,6 +71,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
         $scope.$apply(function(){
           $scope.currentCountry = code;
           $scope.country=  $scope.countrys[code.toUpperCase()];
+	  $scope.oldcountry = $scope.oldcountrys[code.toUpperCase()];
         });
       },
       onRegionOut: function(element,code,region){
@@ -82,6 +87,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
         color[false] = "#888888";
     for(key in $scope.countrys){
       var item = $scope.countrys[key];
+      var olditem = $scope.oldcountrys[key];
       var match = false;
       if ($scope.currentActivity == undefined){
         match=true;
@@ -156,6 +162,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
   $scope.openWindow = function(code){
       $scope.currentCountry = code;
       $scope.country=  $scope.countrys[code.toUpperCase()];
+      $scope.oldcountry = $scope.oldcountrys[code.toUpperCase()];
       $scope.searchString = "";
 
     $("#landDetails").openModal({ready: function() {
