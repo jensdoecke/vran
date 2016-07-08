@@ -11,6 +11,11 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
   $http.get('/api/oldcountries/').success(function(data) {
       $scope.oldcountrys = data;
   });
+  
+  $http.get('/api/exchangerates/').success(function(data) {
+      $scope.exchangerates = data;
+  });
+  
   $scope.customer={name:"",company:"",message:"",email:"",telefon:""};
   $scope.country= undefined;
   $scope.oldcountry = undefined;
@@ -72,6 +77,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
           $scope.currentCountry = code;
           $scope.country=  $scope.countrys[code.toUpperCase()];
 	  $scope.oldcountry = $scope.oldcountrys[code.toUpperCase()];
+	  $scope.exchangerate = $scope.exchangerates[code.toUpperCase()];
         });
       },
       onRegionOut: function(element,code,region){
@@ -88,6 +94,7 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
     for(key in $scope.countrys){
       var item = $scope.countrys[key];
       var olditem = $scope.oldcountrys[key];
+      var exchangerate = $scope.exchangerates[key];
       var match = false;
       if ($scope.currentActivity == undefined){
         match=true;
@@ -160,9 +167,10 @@ worldCardApp.controller('worldCardCtrl', function ($scope, $timeout, $http) {
     return item.name = 'deu' || item.name === 'blue';
   };
   $scope.openWindow = function(code){
-      $scope.currentCountry = code;
+      $scope.currentCountry = code.toLowerCase();
       $scope.country=  $scope.countrys[code.toUpperCase()];
       $scope.oldcountry = $scope.oldcountrys[code.toUpperCase()];
+      $scope.exchangerate = $scope.exchangerates[code.toUpperCase()];
       $scope.searchString = "";
 
     $("#landDetails").openModal({ready: function() {
