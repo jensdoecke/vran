@@ -3,8 +3,7 @@ applications:
   memory: 1024M
   instances: 1
   domain: eu-gb.mybluemix.net
-  name: icanhaznodejs
-  host: icanhaznodejs
+  name: VRAuslandsnavigatorprototypvers2
+  host: VRAuslandsnavigatorprototypvers2
   disk_quota: 1024M
-  services:
-  - cloudant
+  timeout: 180

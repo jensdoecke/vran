@@ -4,14 +4,26 @@ var router = express.Router();
 var worldbank = require('./worldbank');
 app.use(express.static(__dirname + '/public'));
 
-app.listen(6001, '0.0.0.0', function () {
+var cfenv = require('cfenv');
+var appEnv = cfenv.getAppEnv();
+
+/*app.listen(6001, '0.0.0.0', function () {
   console.log('server starting');
+  worldbank.initDb();
+});*/
+app.listen(appEnv.port, '0.0.0.0', function() {
+  console.log("server starting on " + appEnv.url);
   worldbank.initDb();
 });
 
-router.get('/countries', function (req, res) {
-  // var daten = require('./misc/worldbank.json');
+router.get('/reloadworldbank', function (req, res) {
   worldbank.selectCountries(res);
+});
+
+router.get('/countries', function (req, res) {
+  var daten = require('./misc/worldbank.json');
+  //worldbank.selectCountries(res);
+  res.send(daten);
 });
 
 router.get('/laenderinfos', function (req, res) {
@@ -64,3 +76,7 @@ router.get('/exchangerates', function(req,res) {
 });
 
 app.use('/api', router);
+
+/*setInterval( function() {
+  auto update of worldbank data!  
+}, 864000000);*/

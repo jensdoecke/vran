@@ -33,28 +33,43 @@ module.exports = {
 
     requiredIndicators.forEach(function(reqIndicator){
       fetchRequest(reqIndicator.indicator, reqIndicator.mrv);
-    });
+    });        
   }
   ,
   selectCountries: function(res){
+      loadCountries(function(data) {
+      var fs  = require('fs');
+      //console.log(data);
+      fs.writeFile('./misc/worldbank.json', JSON.stringify(data, null, 4), (err) => {
+	if (err) throw err;
+	console.log('Weltbankdaten geladen!');
+      });
+      res.send(data);
+    });
+
+    
+  }
+}
+
+
+  function loadCountries(callback){
     var sqlStmt = "SELECT T.country, 1*(1*T.`PV.EST`+0) AS politische_lage, 0.5*(1*T.`NY.GDP.MKTP.KD.ZG`+0)+0.3*(-1*T.`SL.UEM.TOTL.ZS`+100)+0.2*(-1*T.`GC.BAL.CASH.GD.ZS`+100) AS wirtschaftliche_lage, 0.7*(1*T.`NY.GDP.PCAP.PP.KD`+0)+0.3*(-1*T.`SL.UEM.TOTL.ZS`+100) AS export_kaufkraft, 0.5*(-1*T.`IC.IMP.DOCS`+100)+0.5*(-1*T.`IC.IMP.COST.CD`+100) AS export_einfuhrbestimmungen, 1*(1*T.`LP.LPI.OVRL.XQ`+0) AS export_logistikanbindung, 0.5*(-1*T.`IC.EXP.DOCS`+100)+0.5*(-1*T.`IC.EXP.COST.CD`+100) AS import_ausfuhrbestimmung, 0.7*(-1*T.`NY.GDP.PCAP.PP.KD`+100)+0.3*(1*T.`SL.UEM.TOTL.ZS`+0) AS import_preisniveau, 1*(1*T.`LP.LPI.OVRL.XQ`+0) AS import_logistikanbindung, 0.4*(-1*T.`IC.BUS.EASE.XQ`+100)+0.2*(1*T.`IT.NET.USER.P2`+0)+0.4*(1*T.`LP.LPI.OVRL.XQ`+0) AS produktionsstaette_infrastruktur, 0.3*(1*T.`SL.UEM.TOTL.ZS`+0)+0.7*(-1*T.`SL.GDP.PCAP.EM.KD`+100) AS produktionsstaette_lohnniveau, 0.5*(-1*T.`SH.DTH.COMM.ZS`+100)+0.5*(-1*T.`SH.DTH.INJR.ZS`+100) AS produktionsstaette_umwelteinfluesse FROM (SELECT `country`,MAX(IF(`indicator` = 'PV.EST', `score`, NULL)) AS 'PV.EST',MAX(IF(`indicator` = 'NY.GDP.MKTP.KD.ZG', `score`, NULL)) AS 'NY.GDP.MKTP.KD.ZG',MAX(IF(`indicator` = 'SL.UEM.TOTL.ZS', `score`, NULL)) AS 'SL.UEM.TOTL.ZS',MAX(IF(`indicator` = 'GC.BAL.CASH.GD.ZS', `score`, NULL)) AS 'GC.BAL.CASH.GD.ZS',MAX(IF(`indicator` = 'NY.GDP.PCAP.PP.KD', `score`, NULL)) AS 'NY.GDP.PCAP.PP.KD',MAX(IF(`indicator` = 'IC.IMP.DOCS', `score`, NULL)) AS 'IC.IMP.DOCS',MAX(IF(`indicator` = 'IC.IMP.COST.CD', `score`, NULL)) AS 'IC.IMP.COST.CD',MAX(IF(`indicator` = 'LP.LPI.OVRL.XQ', `score`, NULL)) AS 'LP.LPI.OVRL.XQ',MAX(IF(`indicator` = 'IC.EXP.DOCS', `score`, NULL)) AS 'IC.EXP.DOCS',MAX(IF(`indicator` = 'IC.EXP.COST.CD', `score`, NULL)) AS 'IC.EXP.COST.CD',MAX(IF(`indicator` = 'IC.BUS.EASE.XQ', `score`, NULL)) AS 'IC.BUS.EASE.XQ',MAX(IF(`indicator` = 'IT.NET.USER.P2', `score`, NULL)) AS 'IT.NET.USER.P2',MAX(IF(`indicator` = 'SL.GDP.PCAP.EM.KD', `score`, NULL)) AS 'SL.GDP.PCAP.EM.KD',MAX(IF(`indicator` = 'SH.DTH.COMM.ZS', `score`, NULL)) AS 'SH.DTH.COMM.ZS',MAX(IF(`indicator` = 'SH.DTH.INJR.ZS', `score`, NULL)) AS 'SH.DTH.INJR.ZS'  FROM worldbank_score GROUP BY  `country`) AS T";
     db.getClient().query(sqlStmt,
       function(err, rows, fields) {
         if(err)
         {
-          res.send({error: "Fehler bei der Länderselektion."});
-          return;
+          return err;
         }
 
         var jsonResult = {};
         rows.forEach(function(row){
           jsonResult[row.country] = mapResultToJson(row);
         });
-        res.send(jsonResult);
-
+        callback(jsonResult);
       });
   }
-}
+
+
 
 function mapResultToJson(row){
   var json = {
